@@ -1,27 +1,198 @@
 <html>
 
-<head>
-	<!-- TODO: dependencies -->
-	<script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+	<head>
+		<!-- TODO: dependencies -->
+		<script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
+
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="import" href="../iron-input/iron-input.html">
+		<link rel="import" href="../px-theme/px-theme-styles.html">
+		<link rel="import" href="../px-theme/px-theme.html">
+		<link rel="import" href="../px-theme/px-app.html">
+		<link rel="import" href="../px-demo-helpers/px-demo-helpers.html" />
+		<link rel="import" href="../px-demo-snippet/px-demo-snippet.html">
+		<link rel="import" href="../px-api-viewer/px-api-viewer.html">
+		<link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html" />
+		<link rel="import" href="../iron-component-page/iron-component-page.html">
+		<link rel="import" href="px-navbar.html">
+		<style include="px-theme-styles" is="custom-style"></style>
+
+		<title>px-navbar</title>
+		<style media="screen">
+			.box {
+				background: transparent;
+				border: none;
+				padding: 10px;
+			}
+
+			.actionable {
+				text-decoration: none;
+			}
+
+			.position-relative {
+				position: relative;
+			}
+
+			.position-relative {
+				min-height: 75px;
+			}
+
+			.hero {
+				background: #fff;
+			}
+
+			body,
+			html {
+				background: #f7f7fc !important;
+				overflow: hidden;
+				overflow-y: scroll;
+				overflow-y: auto;
+				-webkit-overflow-scrolling: touch;
+			}
+
+			.apiContainer {
+				background: #fff;
+				margin: 0 auto;
+			}
+
+			.mega-demo {
+				background: #f7f7fc;
+				width: 100%;
+			}
+
+			.demo,
+			.properties {
+				background: #fff;
+				border: 1px solid #d1d0d8;
+			}
+		</style>
+	</head>
+
+	<body unresolved>
+
+		<template id="app" is="dom-bind">
 
 
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!-- Element Description -->
+    <div class="hero u-p++ text--shadow">
+      <a class="actionable flex flex--right flex--middle" href="https://github.com/PredixDev/px-navbar" target="_blank"><iron-icon class="menu__open" icon="fa:fa-github"></iron-icon>View on Github</a>
+  		<h1 class="delta">px-navbar</h1>
+      <div class="description-text">
+        <p>
+        The px-navbar enables navigation through an information hierarchy and, optionally, management of screen contents.
+        </p>
+      </div>
+  		<div class="flex">
+  			<img class="u-mr--" src="https://img.shields.io/travis/PredixDev/px-navbar.svg?style=flat-square" alt="Travis"/>
+  			<img class="u-mr--" src="https://img.shields.io/bower/v/px-navbar.svg?style=flat-square" alt="Bower"/>
+  			<img class="u-mr--" src="https://img.shields.io/github/issues-raw/PredixDev/px-navbar.svg?style=flat-square" alt="Issues"/>
+  		</div>
+  	</div>
+
+		<!--  Element Demo -->
+		<div class="flex flex--col">
+			<div class="demoContainer flex__item">
+				<div class="u-p++">
+					<section class="tab-page">
 
 
+						<!-- TODO: Element Demo / Properties / Demo -->
+						<div class="flex">
+							<div class="u-ph+ u-pb+ properties u-1/4">
+								<p class="epsilon">Properties</p>
+								<template id="properties" is="dom-repeat" items="[[props]]">
+									<div class="form-group flex flex--justify u-mb">
+										<label for="title">[[item.label]]:</label>
+										<input is="iron-input" bind-value="{{item.value}}" type="text" class="text-input" name="[[item.name]]">
+									</div>
+								</template>
+							</div>
+							<div class="flex__item u-ml+ demo u-p+">
 
-	<!-- TODO: Extra components -->
-	<link rel="import" href="../iron-component-page/iron-component-page.html">
+								<!-- TODO: Visual Demo -->
+								<div class="position-relative">
+									<px-navbar id="demo1" title="{{getElementProperties(props, 'title')}}" back="[[props.back]]" back-label="[[props.backLabel]]" subtitle="[[arrayItem(props.*, 1, 'subtitle')]]"></px-navbar>
+								</div>
 
-	<title>px-navbar | docs</title>
-</head>
+								<!-- TODO: Code Demo -->
+								<px-demo-snippet element-properties="{{getElementProperties(props)}}" element-name="px-navbar">
+								</px-demo-snippet>
 
-<body>
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
 
-	<!-- TODO: docs -->
-	<iron-component-page id="docs" src="px-navbar.html" view="docs"></iron-component-page>
+		<!--  Element API -->
+		<div class="flex flex--col">
+			<div class="apiContainer flex__item">
+				<div class="u-p++">
+					<px-api-viewer id="apiViewer" source="px-navbar"></px-api-viewer>
+				</div>
+			</div>
+		</div>
 
-</body>
+		<!-- Element Footer -->
+		<footer class="footer flex flex--center">
+			<div class="footer__container u-pv++">
+				<div>
+					<a href="https://ge.com/digital">
+						<img src="https://predixdev.github.io/px-alert-message/px-alert-message/monogram-wdmk.png" alt="GE Monogram" class="footer__img">
+					</a>
+				</div>
+				<div class="footer__list">
+					<ul class="list-inline list-inline--delimited">
+						<li>
+							<a href="http://predix.io/legal" class="footer__list--lnk">Legal</a>
+						</li>
+						<li>
+							<a href="mailto:info@predix.io" class="footer__list--lnk">Contact Us</a>
+						</li>
+						<li>Copyright &copy; {{year}} General Electric Company. All rights reserved.</li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+
+		</template>
+
+		<script type="text/javascript">
+
+			document.addEventListener('WebComponentsReady', function() {
+
+				var scope = document.querySelector('#app');
+				scope.arrayItem = function(change, index, path) {
+					return this.get(path, change.base[index]);
+				};
+				scope.getElementProperties = function(p, key) {
+					var _out = {};
+					if (p && p.length) {
+						p.forEach(function(o) {
+							_out[o.name] = o.value;
+						});
+					}
+					return (key ? _out[key] : _out);
+				};
+				scope.props = [{
+					name: 'title',
+					label: 'Title',
+					value: 'Navbar Title',
+					type: 'text'
+				}, {
+					name: 'subtitle',
+					label: 'Sub Title',
+					value: 'Navbar SubTitle',
+					type: 'text'
+				}];
+				var year = new Date();
+				scope.year = year.getFullYear();
+			});
+		</script>
+
+	</body>
 
 </html>
