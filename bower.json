@@ -27,22 +27,21 @@
     "fastclick": "latest",
     "px-page": "latest",
     "px-drawer": "latest",
-		"px-theme": "~1.1.2",
-    "polymer-font-awesome": "https://github.com/jonniespratley/polymer-font-awesome.git#~0.1.5",
+    "px-theme": "~1.1.2",
+    "polymer-font-awesome": "px-polymer-font-awesome#^0.1.9",
     "iron-scroll-target-behavior": "PolymerElements/iron-scroll-target-behavior#~1.0.6"
   },
   "devDependencies": {
-		"px-demo-snippet": "^0.5.2",
+    "px-demo-snippet": "^0.5.2",
     "px-api-viewer": "^0.1.0",
     "iron-component-page": "PolymerElements/iron-component-page#~1.0.5",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.2.3",
-    "px-table-view": "https://github.com/PredixDev/px-table-view.git",
+    "px-table-view": "master",
     "px-buttons-design": "^0.4.23",
     "px-mobile-design": "https://github.com/PredixDev/px-mobile-design.git",
     "px-flexbox-design": "https://github.com/PredixDev/px-flexbox-design.git#^0.3.7",
     "px-page": "https://github.com/PredixDev/px-page.git",
     "px-demo-helpers": "https://github.com/PredixDev/px-demo-helpers.git",
-
     "px-code-design": "^0.2.11",
     "px-normalize-design": "^0.3.8",
     "px-viewport-design": "^0.4.5",
@@ -52,7 +51,8 @@
     "polymer": "~v1.5.0",
     "fetch": "~0.10.0",
     "px-theme": "1.1.2",
-    "polymer-font-awesome": "~0.1.5",
-    "px-typography-design": "^1.1.0"
+    "polymer-font-awesome": "^0.1.9",
+    "px-typography-design": "^1.1.0",
+    "px-table-view": "master"
   }
 }
