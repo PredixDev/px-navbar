@@ -36,7 +36,6 @@
     "px-api-viewer": "^0.1.0",
     "iron-component-page": "PolymerElements/iron-component-page#~1.0.5",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.2.3",
-    "px-table-view": "master",
     "px-buttons-design": "^0.4.23",
     "px-mobile-design": "https://github.com/PredixDev/px-mobile-design.git",
     "px-flexbox-design": "https://github.com/PredixDev/px-flexbox-design.git#^0.3.7",
@@ -45,14 +44,17 @@
     "px-code-design": "^0.2.11",
     "px-normalize-design": "^0.3.8",
     "px-viewport-design": "^0.4.5",
-    "px-box-sizing-design": "^0.2.7"
+    "px-box-sizing-design": "^0.2.7",
+    "px-list-inline-design": "^0.2.11",
+    "px-toggle-design": "^0.2.12",
+    "px-actionable-text-icons-design": "^0.0.3",
+    "px-headings-design": "^0.2.14"
   },
   "resolutions": {
-    "polymer": "~v1.5.0",
+    "polymer": "^v1.5.0",
     "fetch": "~0.10.0",
     "px-theme": "1.1.2",
     "polymer-font-awesome": "^0.1.9",
-    "px-typography-design": "^1.1.0",
-    "px-table-view": "master"
+    "px-typography-design": "^1.1.0"
   }
 }
