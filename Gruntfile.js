@@ -23,6 +23,7 @@ module.exports = function (grunt) {
 			},
 			dist: {
 				files: {
+					'css/noprefix/px-navbar-demo.css': 'sass/px-navbar-demo.scss',
 					'css/noprefix/px-navbar-sketch.css': 'sass/px-navbar-sketch.scss',
 					'css/noprefix/px-navbar.css': 'sass/px-navbar-predix.scss'
 				}
