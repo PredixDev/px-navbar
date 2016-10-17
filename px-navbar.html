@@ -10,19 +10,17 @@
  */
  -->
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../px-partials/px-icon/px-icon.html"/>
+<link rel="import" href="../px-polymer-font-awesome/polymer-font-awesome.html">
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="../iron-scroll-target-behavior/iron-scroll-target-behavior.html">
 <link rel="import" href="./px-navbar-styles.html">
+
 <!--
-
-
-
 
 ### Usage
 
 ```
-<px-navbar id="navbar1" shadow fixed auto-hide>
+<px-navbar id="navbar1" title="My Navbar" fixed auto-hide>
 	<div left>
 
 	</div>
@@ -53,14 +51,8 @@ Custom property | Description | Default
 @homepage index.html
 -->
 <dom-module id="px-navbar">
-<!--
-	<link rel="import" type="css" href="css/px-navbar.css">
-	-->
-
-	<style include="px-navbar-css"></style>
 	<template strip-whitespace>
-
-		<style media="screen">
+		<style include="px-navbar-css">
 			:host {
 				display: block;
 			}
@@ -89,7 +81,7 @@ Custom property | Description | Default
 				<div id="left" class="navbar__left">
 					<template is="dom-if" if="{{drawer}}">
 						<button class="navbar__button flex flex--center" drawer-toggle>
-							<px-icon icon="fa:fa-bars"></px-icon>
+							<iron-icon icon="fa:fa-bars"></iron-icon>
 						</button>
 					</template>
 					<template is="dom-if" if="{{!back}}">
@@ -97,7 +89,7 @@ Custom property | Description | Default
 					</template>
 					<template is="dom-if" if="{{back}}">
 						<button id="backButton" class="navbar__button" on-tap="_handleBackClick">
-							<px-icon icon="fa:fa-angle-left"></px-icon>
+							<iron-icon icon="fa:fa-angle-left"></iron-icon>
 							<span>{{backLabel}}</span>
 						</button>
 					</template>
@@ -188,8 +180,7 @@ Custom property | Description | Default
 				 */
 				autoHide: {
 					type: Boolean,
-					value: false,
-					observer: '_handleAutoHide'
+					value: false
 				},
 				/**
 				 * To show the back button or not.
@@ -217,14 +208,9 @@ Custom property | Description | Default
 				}
 			},
 			listeners: {
-				'px-page-change': '_handleViewChange',
-				'iron-resize': '_resizeHandler'
+				'px-page-change': '_handleViewChange'
 			},
-			observers: ['resetLayout(fixed)'],
-			/**
-			 * Handle resetting the layout.
-			 */
-			resetLayout: function () {},
+
 			/**
 			 * Gets the navbars height.
 			 * @return Number The height of the element.
@@ -232,9 +218,7 @@ Custom property | Description | Default
 			getHeight: function () {
 				return this.$.navbar.offsetHeight;
 			},
-			_resizeHandler: function () {
-				this.resetLayout();
-			},
+
 			/**
 			 * Handle setting up the class naming when attached.
 			 */
@@ -274,22 +258,20 @@ Custom property | Description | Default
 					this.unlisten(this, 'px-page-change', '_handleViewChange');
 				}
 			},
+
 			/**
 			 * Handle when then view is changed, if there is a view container.
 			 * If you want to change the back label, add the back-label="My Label" to the pages navbar element.
 			 */
 			_handleViewChange: function (e) {
-				var _this = this;
 				var current = e.detail;
-
 				if (current) {
-					_this.debounce('_handleViewChange', function () {
-						if (!_this.disableBack) {
-							_this.back = (current.main ? false : true);
+					this.debounce('_handleViewChange', function () {
+						if (!this.disableBack) {
+							this.back = (current.main ? false : true);
 						}
-						_this.title = current.getAttribute('title');
+						this.title = current.getAttribute('title');
 					});
-					//_this.back = (current !== _this.views.main); _this.backLabel = (_this.views.prevView ? _this.views.prevView.title : ''); console.log(_this.tagName, _this.id, 'Add back button to current page', _this.back);
 				}
 			},
 			/**
@@ -322,9 +304,6 @@ Custom property | Description | Default
 			hide: function () {
 				this.isHidden = true;
 			},
-			_isHiddenHandler: function (newVal, oldVal) {
-				this.toggleClass('navbar--is-hidden', newVal, this.$.navbar);
-			},
 			/**
 			 * Handle getting the current view/page, if there is a pagesContainer.
 			 * @returns Element The current active view.
@@ -349,7 +328,9 @@ Custom property | Description | Default
 					});
 				}
 			},
-			_handleAutoHide: function (newVal, oldVal) {},
+			_isHiddenHandler: function (newVal, oldVal) {
+				this.toggleClass('navbar--is-hidden', newVal, this.$.navbar);
+			},
 			_transformHeader: function (y) {
 				this.transform('translate3d(0, ' + y + '%, 0)', this.$.navbar);
 			},
@@ -368,25 +349,21 @@ Custom property | Description | Default
 				wScrollDiff = wScrollBefore - wScrollCurrent;
 				elTop = parseInt(window.getComputedStyle(element).getPropertyValue('top')) + wScrollDiff;
 
-				// scrolled to the very top; element sticks to the top
 				if (wScrollCurrent <= 0) {
 					element.style.top = '0px';
-				//	element.style.position = this.fixed ? 'absolute' : 'fixed';
 
-				// scrolled up; element slides in
 				} else if (wScrollDiff > 0) {
 					element.style.top = (elTop > 0
 						? 0
 						: elTop) + 'px';
 				} else if (wScrollDiff < 0) {
 
-					// scrolled to the very bottom; element slides in
 					if (wScrollCurrent + wHeight >= dHeight - elHeight) {
 						element.style.top = ((elTop = wScrollCurrent + wHeight - dHeight) < 0
 							? elTop
 							: 0) + 'px';
 					} else {
-						// scrolled down; element slides out
+
 						element.style.top = ((Math.abs(elTop) > elHeight ? -elHeight : elTop) + 'px');
 					}
 				}
