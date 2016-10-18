@@ -72,20 +72,6 @@ gulp.task('clean', function() {
   }).pipe($.clean());
 });
 
-//const stylemod = require('gulp-style-modules');
-gulp.task('poly-styles', function() {
-  gulp.src(`./css/${pkg.name}.css`)
-    .pipe(stylemod({
-      // All files will be named 'styles.html'
-      filename: 'styles',
-      // Use '-css' suffix instead of '-styles' for module ids
-      moduleId: function(file) {
-        return path.basename(file.path, path.extname(file.path)) + '-css';
-      }
-    }))
-    .pipe($.rename(`${pkg.name}-styles.html`))
-    .pipe(gulp.dest('.'));
-});
 
 gulp.task('clean', function() {
   return gulp.src(['.tmp', 'css'], {
@@ -115,8 +101,13 @@ function buildCSS(){
 }
 
 gulp.task('sass', function() {
-  return gulp.src(['./sass/*.scss'])
+  return gulp.src(['./sass/*.scss', '!./sass/*sketch.scss', '!./sass/*-demo.scss'])
     .pipe(buildCSS())
+    .pipe(gulpif(/.*predix/,
+      $.rename(function(path){
+        path.basename = new RegExp('.+?(?=\-predix)').exec(path.basename)[0];
+      })
+    ))
     .pipe(stylemod({
       moduleId: function(file) {
         return path.basename(file.path, path.extname(file.path)) + '-styles';

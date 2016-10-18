@@ -38,7 +38,7 @@
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.2.3",
     "px-buttons-design": "^0.4.23",
     "px-mobile-design": "https://github.com/PredixDev/px-mobile-design.git",
-    "px-flexbox-design": "https://github.com/PredixDev/px-flexbox-design.git#^0.3.7",
+    "px-flexbox-design": "^0.3.7",
     "px-page": "https://github.com/PredixDev/px-page.git",
     "px-demo-helpers": "https://github.com/PredixDev/px-demo-helpers.git",
     "px-code-design": "^0.2.11",
