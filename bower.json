@@ -48,7 +48,10 @@
     "px-list-inline-design": "^0.2.11",
     "px-toggle-design": "^0.2.12",
     "px-actionable-text-icons-design": "^0.0.3",
-    "px-headings-design": "^0.2.14"
+    "px-headings-design": "^0.2.14",
+    "web-component-tester": "^4.3.5",
+    "px-demo-template": "https://github.com/jonniespratley/px-demo-template.git",
+    "web-component-tester": "^4.3.5"
   },
   "resolutions": {
     "polymer": "^v1.5.0",
