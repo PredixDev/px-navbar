@@ -1,6 +1,6 @@
 {
   "name": "px-navbar",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "authors": [
     "Jonnie Spratley <jonnie.spratley@ge.com>"
   ],
@@ -47,7 +47,7 @@
     "px-box-sizing-design": "^0.2.7",
     "px-list-inline-design": "^0.2.11",
     "px-toggle-design": "^0.2.12",
-    "px-actionable-text-icons-design": "^0.0.3",
+    "px-actionable-text-icons-design": "^0.1.0",
     "px-headings-design": "^0.2.14",
     "web-component-tester": "^4.3.5",
     "px-demo-template": "https://github.com/jonniespratley/px-demo-template.git",
