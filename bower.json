@@ -1,6 +1,6 @@
 {
     "name": "px-navbar",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "authors": [
         "Jonnie Spratley <jonnie.spratley@ge.com>"
     ],
@@ -27,7 +27,7 @@
         "fastclick": "latest",
         "px-page": "latest",
         "px-drawer": "latest",
-        "px-theme": "~1.1.2",
+        "px-theme": "^2.0.1",
         "polymer-font-awesome": "px-polymer-font-awesome#^0.1.9",
         "iron-scroll-target-behavior": "PolymerElements/iron-scroll-target-behavior#~1.0.6"
     },
