@@ -8,14 +8,6 @@
     ],
     "license": "ISC",
     "author": "Jonnie Spratley",
-    "scripts": {
-        "dist": "grunt",
-        "postinstall": "bower install",
-        "posttest": "COVERALLS_GIT_COMMIT=HEAD && istanbul-coveralls",
-        "start": "grunt depserve",
-        "test": "wct",
-        "watch": "grunt watch"
-    },
     "devDependencies": {
         "bower": "*",
         "browser-sync": "^2.13.0",
