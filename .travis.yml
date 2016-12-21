@@ -2,22 +2,33 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-  - stable
+- stable
 branches:
   except:
-    - gh-pages
+  - gh-pages
 addons:
+  firefox: latest
   apt:
     sources:
-      - google-chrome
+    - google-chrome
     packages:
-      - google-chrome-stable
+    - google-chrome-stable
 before_script:
-  - npm install web-component-tester
-  - 'export PATH=$PWD/node_modules/.bin:$PATH'
+- npm install web-component-tester
+- npm install bower
+- export PATH=$PWD/node_modules/.bin:$PATH
+- bower install
 script:
-  - xvfb-run wct --skip-plugin sauce
+- xvfb-run wct --skip-plugin sauce
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then wct --plugin sauce --skip-plugin
+  local; fi
 after_success:
-  - cd $TRAVIS_BUILD_DIR/scripts
-  - chmod 755 ghp.sh
-  - ./ghp.sh
+- if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then openssl aes-256-cbc -k "$DEPLOYSECRET"
+  -in deploy.enc -out deploy_key -d; fi
+- cd $TRAVIS_BUILD_DIR/scripts
+- chmod 755 ghp.sh
+- "./ghp.sh"
+env:
+  global:
+  - secure: i8w2GLc/xccqNJsSRtxSgNEnaPRY2Ma7CZFnQ7zinDamU49rGB38bzO7QpYnpRriJWcEZmLQB99bDp3lBHs+PgxrwEqvszTaRFKKvB2mm60tHOJaIM6Muz5mmejwKlnGpilZGMZiPi8+mdWSxQoQGOk3nIetOn0QV3mzqrygN7EcOvq4fOYT/FV176KAMbNCDeqfM6H0b5co8AowRhXGadhyQAl9xqw2fArlrF+atYLDHW8/lRIbdVB0VgB/ZrulrQL38XgfNkjepCpbN73JWCgHXCeRfOWq+7fv0Cg+zmjYNdTZW/jb8HxCSsTqaFJy+Pjx234IWvWs5pvT7H19wqmYaKy8Io5zcmlZrdmor0TN2wL599ItUhpy+mcQfdJLQK8gCD71GcKgc3uT8z8Le7B+0kdJeYk4ItigR1bf7qPw7hGAR1SMCkk9SNxVdjjNTuAmxOHYahSsrj8A7LRcst3ZT0GkNfAXiv+a/MPJUy/b7zW0Rd6uWfSqqx562jRHnmMa+EZ+uWymQpqD4LdGq1jLRufoHIN5ncUbylelTgEaYZApOvWcje9YTbDrIm00FXq2XOLxCFRN+6m32JiN19H3QjqfMz4lczyiB5/p1mNzuW6tBBio1Dyu5vpi7Y6aKaMPfNn0Gd9J0jl7TfEcyB90Y+j1kWUzBwEV8RsB13c=
+  - secure: HY+Ixet3/l0V9umXXW6/P/EKXRMFbQAXjZGkzWS771sLpV7UQAE1ID0NQ9AAvlZDo6puTuwptsdoeTLBGrc2dXfTE7vI8FgsJ1Chr3KCuLi019CgwgAwH8RQH2dBgzTEl/O0D0HDzi/fq0JZx0y9w0G5ZwPCDwUcDwu0wC1erHbzk7GC7Ib2HIrpVvh5h0xwud/38kDc0neEIQib5jMVRjFu1MK85w8o2QJQWiOP5nGltc0yKYXuj7atvZkcOy3XwnghctN95qQ3Qizyd2Rt2dM1G9ooAZg6NE2DBqoYfhvJbq6UQK/CYmFZozELt5V922qpZOsnPMGyeYJfPuIbD9tMsXPen0+JB4O7TG3pBCMCyOCgDeywKPPD1KmdXhD6y83cjk68wsVPYlQLsr7wtWs1zB/HD4YRboGRrB4FU84WT/U0Kr8ypk7Ew/i90xG+AcWI+8epsyO66mscumJgb1Z9mai/SG09H5UJ9vEltrwI1KAfuyOuuQDx9I9MBPXZDgfoKOOsnK20vt4tx2qMvywZ5cYJ9pP3rSPfC1EzmY0Wo5crivrLwuANtxlHlzts8TugztA8nwZn1wBN7r+1z0Y8oBysP5HF5ehmSd+Yo2f2/SJ1/oESF3tz1CHyuE7GyAZU10XFpntH5Zp2UFvHfGQX0FUCfbvVUe1C+0Achoc=
